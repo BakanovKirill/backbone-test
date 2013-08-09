@@ -1,8 +1,8 @@
 define([
+    'jquery',
     'underscore',
     'backbone'
-], function (_, Backbone) {
-
+], function ($, _, Backbone) {
     return Condition = Backbone.Model.extend({
         data: {
             "name": "Aneurysm",
@@ -47,6 +47,7 @@ define([
             if (options.success) {
                 options.success(this, {});
             }
+            this.trigger('reset')
         },
 
         save: function (options) {

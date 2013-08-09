@@ -5,10 +5,19 @@ require.config({
     backbone: '../../lib/backbone-min',
     text: "../../lib/text",
     templates: 'templates'
+  },
+  shim: {
+      'backbone': {
+          deps: ['underscore', 'jquery'],
+          exports: 'Backbone'
+      },
+      'underscore': {
+          exports: '_'
+      }
   }
 
 });
 
-require(['application'], function(TestApp) {
-    TestApp.init();
+require(['jquery','underscore','backbone','router'], function($, _, Backbone) {
+    Backbone.history.start();
 });

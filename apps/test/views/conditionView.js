@@ -16,20 +16,21 @@ define([
 
     return ConditionView = Backbone.View.extend({
         el: $("#container"),
+        template: _.template(conditionTpl),
 
         initialize: function (options) {
             var that = this;
-            this.model.fetch({success: function () {
-                that.render();
-                window.model = that.model
-            }});
+            this.listenTo(this.model,'reset', this.render);
         },
 
-        render: function () {
-            var compiledTemplate = _.template(conditionTpl, {treatments: this.model.get('treatments'),
-                name: this.model.get('name')});
-            this.$el.html(compiledTemplate);
-            this.$el.show()
+        render: function (e) {
+            tpl = this.template({
+                treatments: this.model.get('treatments'),
+                name: this.model.get('name')
+            });
+            document.title=this.model.get('name');
+            this.$el.html(tpl);
+            this.$el.show();
         }
     });
 });
