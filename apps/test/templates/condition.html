@@ -1,0 +1,11 @@
+<h3>Treatments for <%= name %>:</h3>
+<ul>
+  <% _.each(treatments, function(treatment){ %>
+   <li>
+     <b><%= treatment.display_name %></b>:
+     <br />
+     <%= treatment.description %>
+   </li>
+  <br />
+  <% }); %>
+</ul>
